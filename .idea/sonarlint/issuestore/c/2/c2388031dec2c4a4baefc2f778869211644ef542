@@ -1,0 +1,9 @@
+
+E
+java:S1604"(Make this anonymous inner class a lambda(¹òªÚ8€ˆÌíâ1
+f
+java:S3252"IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(¢¡´8ŠˆÌíâ1
+T
+java:S1128"7Remove this unused import 'java.awt.event.ActionEvent'.(Úù“‘8ˆÌíâ1
+W
+java:S1128	":Remove this unused import 'java.awt.event.ActionListener'.(Ìä¹8ˆÌíâ1

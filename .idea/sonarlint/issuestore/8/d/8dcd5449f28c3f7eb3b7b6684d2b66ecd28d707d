@@ -1,0 +1,12 @@
+
+J
+java:S1604'"(Make this anonymous inner class a lambda(χΥ€σψÿÿÿÿ8Ξκμβ1
+o
+java:S3776
+"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(Ηµν‘8›Ξκμβ1
+f
+java:S3252"IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(Ά΅΄8Ξκμβ1
+u
+java:S3012."YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(ΣδΞC8¤Ξκμβ1
+G	java:S1064"+Replace this use of System.out by a logger.(ρμΩ8¥Ξκμβ1
+L	java:S1066"+Replace this use of System.out by a logger.(ªΣΌαώÿÿÿÿ8¥Ξκμβ1

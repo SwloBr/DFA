@@ -1,0 +1,31 @@
+
+<
+build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+O
+src/main/java/com/swlo/Ale.java,3\7\37e09ee6bfc3d48f88f143e936433bddbd09eb1b
+Z
+*src/main/java/com/swlo/TabelaComBotao.java,8\d\8dcd5449f28c3f7eb3b7b6684d2b66ecd28d707d
+_
+/src/main/java/com/swlo/trash/JTableExample.java,c\2\c2388031dec2c4a4baefc2f778869211644ef542
+b
+2src/main/java/com/swlo/trash/TabelaComSelecao.java,5\c\5ce0ecdaa032a84a3dd5e4bf72f4e82df01db187
+X
+(src/main/java/com/swlo/trash/Window.java,1\0\101bbd6566c8a12b7e65193d6fdf4e02e46cbeef
+S
+#src/main/java/com/swlo/Windows.java,2\f\2f8eb2271474a5b0bd162d2056d5c7d62d4385f3
+W
+'src/main/java/com/swlo/StorageData.java,5\2\52a2e077fab791f3351ccbcdb1346f01788ecfb5
+Q
+!src/main/java/com/swlo/NodeD.java,e\e\eec9e86fd87f9a48ca09073ba0dd09a027bb69fc
+V
+&src/main/java/com/swlo/CreateNode.java,f\e\fe635fcbc98aa522ad254c047ec9a753a87b0b6a
+P
+ src/main/java/com/swlo/Main.java,c\9\c912b7af23db0d3a407da35e9d5b847020cf8877
+Q
+!src/main/java/com/swlo/Utils.java,6\a\6af7450bc5d3f520af04354fe2ba51d1af03255f
+7
+gradlew,5\b\5bbfa66edb4db3c7c33c5181f43510990d3307f9
+U
+%src/main/java/com/swlo/TraceTest.java,3\a\3ad317852b95048710f3bc2f6cc97fa09289bcee
+X
+(src/main/java/com/swlo/Minimization.java,2\a\2aaa299f133bc07c7f6d0f66372a8516ebae6276

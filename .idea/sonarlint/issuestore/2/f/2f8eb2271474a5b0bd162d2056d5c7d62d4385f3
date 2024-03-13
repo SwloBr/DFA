@@ -1,0 +1,15 @@
+
+€
+java:S1488"^Immediately return this expression instead of assigning it to the temporary variable "states".(ØÎ‡³ûÿÿÿÿ8¤Ú„•ã1
+‚
+java:S1488"`Immediately return this expression instead of assigning it to the temporary variable "alphabet".(³ŸŞûÿÿÿÿ8¥Ú„•ã1
+}
+java:S1488N"`Immediately return this expression instead of assigning it to the temporary variable "testPath".(ËøÇ8¥Ú„•ã1
+{
+java:S30126"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(¼ã³™ûÿÿÿÿ8üÚ„•ã1
+}
+java:S3923{"[Remove this conditional structure or edit its code blocks so that they're not all the same.(£¢Éºúÿÿÿÿ8¡Å£•ã1
+T
+java:S1128"7Remove this unused import 'java.awt.event.ActionEvent'.(Úù“‘8ƒÛ„•ã1
+W
+java:S1128":Remove this unused import 'java.awt.event.ActionListener'.(Ìä¹8ƒÛ„•ã1

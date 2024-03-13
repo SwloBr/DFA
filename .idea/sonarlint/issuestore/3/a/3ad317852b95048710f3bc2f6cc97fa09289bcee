@@ -1,0 +1,9 @@
+
+\
+java:S1854	":Remove this useless assignment to local variable "states".(¸†Ïçıÿÿÿÿ8¸Úüâ1
+^
+java:S1854"<Remove this useless assignment to local variable "alphabet".(Ùµƒëúÿÿÿÿ8¸Úüâ1
+O
+java:S1481"-Remove this unused "alphabet" local variable.(Ùµƒëúÿÿÿÿ8¸Úüâ1
+M
+java:S1481	"+Remove this unused "states" local variable.(¸†Ïçıÿÿÿÿ8¸Úüâ1
