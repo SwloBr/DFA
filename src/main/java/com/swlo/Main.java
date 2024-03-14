@@ -1,13 +1,15 @@
 package com.swlo;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Main{
+public class Main {
 
     private static Main main;
     private static final CreateNode createNode = new CreateNode();
     private static Windows windows = new Windows();
     private static final StorageData storageData = new StorageData();
+    private static Minimization minimization = new Minimization();
 
     public static void main(String[] args) {
 
@@ -28,14 +30,11 @@ public class Main{
         createNode.createNodes(rawStates);
 
         windows.showResult(new TraceTest().test());
+        ArrayList<ArrayList<Boolean>> minimize = minimization.minimize(storageData.getStates(), storageData.getAlphabet());
 
-        System.out.println("The automaton is: " + (new TraceTest().test() ? "Correct" : "Incorrect"));
-
-
-        System.out.println("The minimized automaton is: " + (Arrays.deepToString(new Minimization().minimize(storageData.getStates(), alphabet))));
-
-
-
+        boolean itsMinized = minimization.itsMinimal(minimize);
+        windows.showMinimizationResult(itsMinized);
+        windows.tableMinimization(minimize, storageData.getStates());
 
     }
 

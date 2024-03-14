@@ -1,6 +1,8 @@
 package com.swlo;
 
 
+import java.util.ArrayList;
+
 public class CreateNode implements Utils {
 
 
@@ -8,7 +10,11 @@ public class CreateNode implements Utils {
         NodeD[] states = new NodeD[getRawStates.length];
         for (int i = 0; i < getRawStates.length; i++) {
 
-            states[i] = new NodeD(getRawStates[i]);
+            states[i] = new NodeD(getRawStates[i], i);
+
+            for (int j = 0; j < getAlphabet().length; j++) {
+                states[i].getReceived().add(new ArrayList<>());
+            }
         }
 
         Main.getInstance().getStorageData().setStates(states);
@@ -33,7 +39,11 @@ public class CreateNode implements Utils {
             NodeD node = states[i];
             String[] matrix = getMatrix()[i];
             for (int j = 0; j < getAlphabet().length; j++) {
-                node.addTransition(getAlphabet()[j], getStateByName(matrix[j]));
+                NodeD state = getStateByName(matrix[j]);
+                node.addTransition(getAlphabet()[j], state);
+
+                state.getReceived().get(j).add(node);
+
 
             }
         }

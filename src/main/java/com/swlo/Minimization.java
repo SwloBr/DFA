@@ -1,50 +1,97 @@
 package com.swlo;
 
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Minimization implements Utils {
 
-    public NodeD[][] minimize(NodeD[] nodes, String[] alphabet) {
-        NodeD[][] matrix = new NodeD[nodes.length - 1][nodes.length - 1];
-        for (int i = 0; i < nodes.length - 1; i++) {
+    public ArrayList<ArrayList<Boolean>> matrix;
+
+    public ArrayList<ArrayList<Boolean>> minimize(NodeD[] nodes, String[] alphabet) {
+        matrix = new ArrayList<>();
+
+        for (int i = 0; i < (nodes.length - 1); i++) {
+            ArrayList<Boolean> row = new ArrayList<>();
             for (int j = 1; j < nodes.length; j++) {
-                if (i != j) {
-                    NodeD node1 = nodes[i];
-                    NodeD node2 = nodes[j];
-                    if (node1.isFinal() != node2.isFinal()) {
-                        matrix[i][j] = node1;
-                    } else {
-                        boolean areEquivalent = true;
-                        for (String symbol : alphabet) {
-                            NodeD nextNode1 = node1.getTransitions().get(symbol);
-                            NodeD nextNode2 = node2.getTransitions().get(symbol);
-                            if (nextNode1 != null && nextNode2 != null) {
-                                int index1 = -1;
-                                int index2 = -1;
-                                for (int k = 0; k < nodes.length; k++) {
-                                    if (nodes[k] == nextNode1) {
-                                        index1 = k;
-                                    }
-                                    if (nodes[k] == nextNode2) {
-                                        index2 = k;
-                                    }
-                                }
-                                if (index1 != index2) {
-                                    areEquivalent = false;
-                                    break;
-                                }
-                            } else if (nextNode1 != null || nextNode2 != null) {
-                                areEquivalent = false;
-                                break;
-                            }
-                        }
-                        if (areEquivalent) {
-                            matrix[i][j] = node1;
-                        }
+                row.add(false);
+            }
+            matrix.add(row);
+            System.out.println(Arrays.toString(row.toArray()));
+        }
+
+        System.out.println("Matrix created: " + matrix.size() + "x" + matrix.get(0).size());
+
+        for (ArrayList<Boolean> booleans : matrix) {
+            System.out.println(Arrays.toString(booleans.toArray()));
+        }
+
+
+        for (int i = 0; i < nodes.length - 1; i++) {
+            NodeD first = nodes[i];
+            for (int j = nodes.length - 1; j > 0; j--) {
+                NodeD second = nodes[j];
+                for (int k = 0; k < alphabet.length; k++) {
+                    if (!first.getReceived().get(k).isEmpty() && !second.getReceived().get(k).isEmpty()) {
+                        crossNodes(first, second, k);
                     }
                 }
+
             }
         }
 
+
         return matrix;
+    }
+
+
+    public void crossNodes(NodeD firstNode, NodeD secondNode, int index) {
+
+        ArrayList<NodeD> first = firstNode.getReceived().get(index);
+        ArrayList<NodeD> second = secondNode.getReceived().get(index);
+
+        for (int i = 0; i < first.size(); i++) {
+            for (int j = 0; j < second.size(); j++) {
+
+                NodeD firstCell = first.get(i);
+                NodeD secondCell = second.get(j);
+                if (firstCell.equals(secondCell)) {
+                    continue;
+                }
+
+                int firstPosition = firstCell.getPosition();
+                int secondPosition = secondCell.getPosition();
+
+
+                if (firstPosition < secondPosition) {
+                    secondPosition = getAlphabet().length - 1 - secondPosition;
+
+                    matrix.get(firstPosition).set(secondPosition, true);
+
+                } else {
+
+                    firstPosition = getAlphabet().length - 1 - firstPosition;
+
+                    matrix.get(secondPosition).set(firstPosition, true);
+
+                }
+
+            }
+
+        }
+
+    }
+
+
+    public boolean itsMinimal(ArrayList<ArrayList<Boolean>> matrix) {
+        for (int i = 0; i < matrix.size(); i++) {
+            for (int j = 0; j < matrix.get(i).size(); j++) {
+                if (!matrix.get(i).get(j)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 

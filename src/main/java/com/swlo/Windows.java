@@ -48,7 +48,6 @@ public class Windows {
         int quantity = Integer.parseInt(quantityFinalStates);
 
 
-
         List<String> availableStates = new ArrayList<>();
         for (String state : states) {
             availableStates.add(state);
@@ -78,9 +77,10 @@ public class Windows {
         String[] testPath = path.split("");
         return testPath;
     }
-public String[][] tableTransition(String[] estados, String[] simbolos) {
+
+    public String[][] tableTransition(String[] states, String[] alphabet) {
         // Criando uma tabela de transição vazia
-        DefaultTableModel model = new DefaultTableModel(estados.length + 1, simbolos.length + 1) {
+        DefaultTableModel model = new DefaultTableModel(states.length + 1, alphabet.length + 1) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return column != 0 && row != 0; // Permitir edição apenas para células internas
@@ -93,25 +93,25 @@ public String[][] tableTransition(String[] estados, String[] simbolos) {
         table.setTableHeader(null);
 
         // Preenchendo a primeira linha com os símbolos do alfabeto
-        for (int i = 0; i < simbolos.length; i++) {
-            model.setValueAt(simbolos[i], 0, i + 1);
+        for (int i = 0; i < alphabet.length; i++) {
+            model.setValueAt(alphabet[i], 0, i + 1);
         }
 
         model.setValueAt("Estados", 0, 0);
 
         // Preenchendo a primeira coluna com os estados
-        for (int i = 0; i < estados.length; i++) {
-            model.setValueAt(estados[i], i + 1, 0);
+        for (int i = 0; i < states.length; i++) {
+            model.setValueAt(states[i], i + 1, 0);
         }
 
 
         // Criando um ComboBox com os estados
-        JComboBox<String> estadosComboBox = new JComboBox<>(estados);
+        JComboBox<String> ComboBoxstates = new JComboBox<>(states);
 
         // Definindo um editor de célula personalizado para cada célula da tabela
         for (int row = 1; row < model.getRowCount(); row++) {
             for (int col = 1; col < model.getColumnCount(); col++) {
-                table.getColumnModel().getColumn(col).setCellEditor(new DefaultCellEditor(estadosComboBox));
+                table.getColumnModel().getColumn(col).setCellEditor(new DefaultCellEditor(ComboBoxstates));
             }
         }
 
@@ -123,7 +123,7 @@ public String[][] tableTransition(String[] estados, String[] simbolos) {
                 if (row == 0 || column == 0) {
                     c.setBackground(Color.YELLOW); // Cor para as células dos estados e do alfabeto
                 } else {
-                    c.setBackground(Color.YELLOW); // Cor para as células internas
+                    c.setBackground(table.getBackground()); // Cor para as células internas
                 }
                 return c;
             }
@@ -133,27 +133,101 @@ public String[][] tableTransition(String[] estados, String[] simbolos) {
         table.setDefaultRenderer(Object.class, renderer);
 
 
-
         // Exibindo a tabela de transição para o usuário
         JOptionPane.showMessageDialog(null, new JScrollPane(table), "Tabela de Transição", JOptionPane.PLAIN_MESSAGE);
 
         // Obtendo os dados preenchidos na tabela e transformando em uma matriz
-        String[][] matrizTransicao = new String[estados.length][simbolos.length];
+        String[][] transitionMatrix = new String[states.length][alphabet.length];
         for (int row = 1; row < model.getRowCount(); row++) {
             for (int col = 1; col < model.getColumnCount(); col++) {
                 String valorCelula = (String) model.getValueAt(row, col);
-                matrizTransicao[row -1][col - 1] = valorCelula;
+                transitionMatrix[row - 1][col - 1] = valorCelula;
             }
         }
-        return matrizTransicao;
+        return transitionMatrix;
     }
 
     public void showResult(boolean result) {
-        if(result){
+        if (result) {
             JOptionPane.showMessageDialog(null, "Cadeia aceita!!!");
         } else {
             JOptionPane.showMessageDialog(null, "Cadeia rejeitada!!!");
         }
     }
 
+    public void showMinimizationResult(boolean result) {
+        if (result) {
+            JOptionPane.showMessageDialog(null, "O autômato está minimizado!!!");
+        } else {
+            JOptionPane.showMessageDialog(null, "O autômato não está minimizado!!!");
+        }
+    }
+
+    public void tableMinimization(ArrayList<ArrayList<Boolean>> matrix, NodeD[] nodes) {
+        // Criando uma tabela de transição vazia
+        DefaultTableModel model = new DefaultTableModel(nodes.length, nodes.length) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        JTable table = new JTable(model);
+
+        // Configurando o cabeçalho da tabela como null para removê-lo
+        table.setTableHeader(null);
+
+        // Preenchendo a primeira linha com os símbolos do alfabeto
+        for (int i = nodes.length - 1; i > 0; i--) {
+            model.setValueAt(nodes[i].getName(), 0, i);
+        }
+
+        model.setValueAt("Estados", 0, 0);
+
+        // Preenchendo a primeira coluna com os estados
+        for (int i = 0; i < nodes.length - 1; i++) {
+            model.setValueAt(nodes[i].getName(), i + 1, 0);
+        }
+
+        for (int i = 0; i < matrix.size(); i++) {
+            for (int j = 0; j < matrix.get(i).size(); j++) {
+                boolean m = matrix.get(i).get(j);
+
+                if (m = true) {
+                    model.setValueAt("X", i + 1, j + 1);
+
+                } else {
+                    model.setValueAt(" ", i + 1, j + 1);
+                }
+            }
+
+            // Renderizador de célula personalizado para colorir as células dos estados e do alfabeto
+            DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
+                @Override
+                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                    Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                    if (value != null && value.toString().equals(" ")) {
+                        c.setBackground(Color.YELLOW); // Cor para as células dos estados e do alfabeto
+                    } else if (value == null) {
+                        c.setBackground(Color.GRAY); // Cor para as células dos estados e do alfabeto
+                    } else {
+                        c.setBackground(table.getBackground()); // Cor para as células internas
+                    }
+                    return c;
+                }
+            };
+
+            // Aplicando o renderizador de célula personalizado à tabela
+            table.setDefaultRenderer(Object.class, renderer);
+
+
+            // Exibindo a tabela de transição para o usuário
+            JOptionPane.showMessageDialog(null, new JScrollPane(table), "Tabela de Transição", JOptionPane.PLAIN_MESSAGE);
+
+
+        }
+
+
+    }
 }
+

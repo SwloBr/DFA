@@ -3,6 +3,7 @@ package com.swlo;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class NodeD {
@@ -13,8 +14,9 @@ public class NodeD {
         this.isInitial = isInitial;
     }
 
-    public NodeD(String name) {
+    public NodeD(String name, int position) {
         this.name = name;
+        this.position = position;
     }
 
     @Setter
@@ -28,6 +30,11 @@ public class NodeD {
     private boolean isInitial;
     @Getter
     private HashMap<String, NodeD> transitions = new HashMap<>();
+    @Getter
+    private ArrayList<ArrayList<NodeD>> received = new ArrayList<>();
+    @Getter
+    @Setter
+    private int position;
 
     public void addTransition(String symbol, NodeD node) {
         transitions.put(symbol, node);
