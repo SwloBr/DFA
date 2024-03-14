@@ -14,8 +14,8 @@ public class Main {
     public static void main(String[] args) {
 
         String[] rawStates = windows.states();
-        String rawInitialState = windows.initialState(rawStates);
         String[] alphabet = windows.alphabet();
+        String rawInitialState = windows.initialState(rawStates);
         String[] rawFinalStates = windows.finalStates(rawStates);
         String[][] tableTransition = windows.tableTransition(rawStates, alphabet);
         String[] trace = windows.testPath();

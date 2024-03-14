@@ -177,9 +177,9 @@ public class Windows {
         // Configurando o cabeçalho da tabela como null para removê-lo
         table.setTableHeader(null);
 
-        // Preenchendo a primeira linha com os símbolos do alfabeto
-        for (int i = nodes.length - 1; i > 0; i--) {
-            model.setValueAt(nodes[i].getName(), 0, i);
+        // Preenchendo a primeira linha com os estados
+        for (int i = nodes.length - 1, j = 1; i > 0; i--, j++) {
+            model.setValueAt(nodes[i].getName(), 0, j);
         }
 
         model.setValueAt("Estados", 0, 0);
@@ -220,12 +220,9 @@ public class Windows {
             // Aplicando o renderizador de célula personalizado à tabela
             table.setDefaultRenderer(Object.class, renderer);
 
-
-            // Exibindo a tabela de transição para o usuário
-            JOptionPane.showMessageDialog(null, new JScrollPane(table), "Tabela de Transição", JOptionPane.PLAIN_MESSAGE);
-
-
         }
+        // Exibindo a tabela de transição para o usuário
+        JOptionPane.showMessageDialog(null, new JScrollPane(table), "Tabela de Transição", JOptionPane.PLAIN_MESSAGE);
 
 
     }
