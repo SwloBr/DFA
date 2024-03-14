@@ -11,9 +11,9 @@ public class Minimization implements Utils {
     public ArrayList<ArrayList<Boolean>> minimize(NodeD[] nodes, String[] alphabet) {
         matrix = new ArrayList<>();
 
-        for (int i = 0; i < (nodes.length - 1); i++) {
+        for (int i = 0; i < (nodes.length-1); i++) {
             ArrayList<Boolean> row = new ArrayList<>();
-            for (int j = 1; j < nodes.length; j++) {
+            for (int j = 1; j < nodes.length - i; j++) {
                 row.add(false);
             }
             matrix.add(row);
@@ -59,18 +59,20 @@ public class Minimization implements Utils {
                     continue;
                 }
 
+
                 int firstPosition = firstCell.getPosition();
                 int secondPosition = secondCell.getPosition();
 
+                System.out.println("First: " + firstCell.getName() + " Second: " + secondCell.getName() + " " + firstPosition + " " + secondPosition);
 
                 if (firstPosition < secondPosition) {
-                    secondPosition = getAlphabet().length - 1 - secondPosition;
+                    secondPosition = getStates().length - 1 - secondPosition;
 
                     matrix.get(firstPosition).set(secondPosition, true);
 
                 } else {
 
-                    firstPosition = getAlphabet().length - 1 - firstPosition;
+                    firstPosition = getStates().length - 1 - firstPosition;
 
                     matrix.get(secondPosition).set(firstPosition, true);
 

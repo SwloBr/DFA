@@ -36,6 +36,10 @@ public class Main {
         windows.showMinimizationResult(itsMinized);
         windows.tableMinimization(minimize, storageData.getStates());
 
+        for (ArrayList<Boolean> booleans : minimize) {
+            System.out.println(Arrays.toString(booleans.toArray()));
+        }
+
     }
 
 
